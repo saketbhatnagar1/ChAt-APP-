@@ -9,3 +9,13 @@ export const login = (req,res) =>{
 export const logout = (req,res) =>{
     res.send("logout");
 };
+
+
+
+
+
+
+
+console.log("HELLO")
+
+//comment for commit for backend setup

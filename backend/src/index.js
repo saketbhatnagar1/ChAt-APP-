@@ -8,7 +8,7 @@ const PORT = process.env.PORT;
 const app = express();
 app.use("/api/auth",authRoutes)
 
-
+//entrypoint for the application :
 app.listen(PORT,()=>{
     console.log("Server is running on "+ PORT);
     connectDB()

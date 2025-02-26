@@ -10,3 +10,9 @@ router.get("/logout",logout)
 
 
 export default router;
+
+
+console.log("HELLO")
+
+//comment for commit for backend setup
+//comment for commit for backend setup
