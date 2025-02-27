@@ -1,2 +1,2 @@
 # ChAt-APP-
-Real time chat app utilizing socket io  and React
+Real time chat app utilizing websockets,mongodb,React,NodeJs and express
