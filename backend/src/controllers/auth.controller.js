@@ -57,11 +57,48 @@ export const signup = async (req,res)=>{
     
 };
 
-export const login = (req,res) =>{
-    res.send("login");
+
+
+export const login = async (req,res) =>{
+    //todo: Handle case where user is already logged in 
+    const {email,password} = req.body
+    try{
+        const user = await User.findOne({email})
+        if(!user){
+            return res.status(400).json({message: "invalid credentials"})
+        }
+       const isPasswordCorrect =  await bcrypt.compare(password,user.password)
+        if (!isPasswordCorrect)
+        {
+            return res.status(400).json({message:"Invalid Credentials"});
+        }
+        generateToken(user._id,res)
+        res.status(200).json({
+            message:"login success",
+            _id:user._id,
+            fullName: user.fullName,
+            email: user.email,
+            profilePic: user.profilePic,
+        })
+    
+    }catch(e){
+        console.log("Error in login controller ",error.message)
+
+    }
+
 };
 
 export const logout = (req,res) =>{
+    //clear cookies:
+    try{
+        res.cookie("jwt","",{maxAge:0})
+        res.status(200).json({message:"logged out successfully"});
+    }
+    catch(error){
+        console.log("error in log out controller",error.message)
+        res.status(500).json({message:"Internal server error"});
+    }
+
     res.send("logout");
 };
 
@@ -71,6 +108,6 @@ export const logout = (req,res) =>{
 
 
 
-console.log("HELLO")
+console.log("HELLO from auth controller")
 
 //comment for commit for backend setup

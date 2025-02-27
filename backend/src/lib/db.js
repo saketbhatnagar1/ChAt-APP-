@@ -16,7 +16,7 @@ export const connectDB = async () => {
 };
 
 
-console.log("HELLO")
+console.log("HELLO from db ")
 
 //comment for commit for backend setup
 //comment for commit for backend setup
