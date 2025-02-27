@@ -57,6 +57,8 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save();
 
+
+    //funcitonality for websockets and socket io to send and receive message,look up at the working of websockets and why they are better than http for realtime communication
     const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
